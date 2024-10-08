@@ -1,0 +1,83 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    height: 100vh;
+    background-image: url('ancient-map-wallpaper.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    
+}
+.msg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#firstmsg {
+    padding-top: 50px;
+    font-size: 100px; 
+    font-weight: bold;
+    color: red;
+    text-shadow: 
+        -3px -3px 0 #000,  
+        3px -3px 0 #000,
+        -6px 6px 0 #000,
+        3px 3px 0 #000;
+    text-align: center;
+}
+#firstpara {
+    font-size: 60px;
+    font-weight: bold;
+    color: red;
+    text-shadow: 
+        -3px -3px 0 #000,  
+        3px -3px 0 #000,
+        -6px 6px 0 #000,
+        3px 3px 0 #000;
+    text-align: center;
+}
+#appear {
+    display: none;
+    margin-left: 450px;
+    margin-top: 45px;
+    width: 600px;
+    height: auto;
+}
+canvas {
+    display: none;
+    position: absolute;
+    left: 550px;
+    top: 90px;
+    width: 480px;
+    height: 510px;
+    pointer-events: none;
+    background: rgba(255, 0, 0, 0.5);
+}
+.bc {
+    position: absolute;
+    right: 50px;
+    top:50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.button {
+    display: none;
+    padding: 20px 30px;
+    font-size: 18px; 
+    background: linear-gradient(0deg, gold, red);
+    color: black;
+    border: 5px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background: linear-gradient(180deg, goldenrod, darkred); 
+}
+

@@ -30,7 +30,7 @@ h1 {
 .holder {
     position: relative;
     bottom: -60px;
-    transition: opacity 1s ease;
+    transition: opacity 5s ease;
     opacity: 0;
 }
 .holder.show{
