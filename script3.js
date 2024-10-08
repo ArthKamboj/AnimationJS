@@ -5,12 +5,10 @@ setTimeout(() => {
 },3000)
 //ELEMENTS LAANE KI JS
 setTimeout(() => {
-    const delay = document.getElementById('appear')
     const cnv = document.getElementById('cnvs')
     const btn1 = document.getElementById('b1')
     const btn2 = document.getElementById('b2')
     const btn3 = document.getElementById('b3')
-    delay.style.display = 'block'
     cnv.style.display = 'block'
     btn1.style.display = 'block'
     btn2.style.display = 'block'
@@ -18,84 +16,115 @@ setTimeout(() => {
 },3000)
 //CANVAS KA KAAM
 const canvas = document.getElementById('cnvs');
-const c = canvas.getContext('2d');
-canvas.width = 550;
-canvas.height = 550;
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth; 
+canvas.height = window.innerHeight;
 
 let animationFrameId;
 let particles = [];
 
-// MORTAR KE COLORS
-const colors = ['rgba(255, 0, 0, 0.8)', // Red
-                'rgba(255, 165, 0, 0.8)', // Orange
-                'rgba(255, 255, 0, 0.8)', // Yellow
-                'rgba(139, 69, 19, 0.8)', // Brown
-                'rgba(0, 0, 0, 0.8)']; // Black
+const colors = ['rgba(255, 0, 0, 0.8)',
+    'rgba(255, 165, 0, 0.8)', 
+    'rgba(255, 255, 0, 0.8)', 
+    'rgba(139, 69, 19, 0.8)',    
+    'rgba(128, 0, 128, 0.8)',
+    'rgba(0, 255, 0, 0.8)',  
+    'rgba(0, 191, 255, 0.8)',
+    'rgba(255, 20, 147, 0.8)',
+    'rgba(255, 255, 255, 0.8)'];
 
-const size = 5; //EXPLOSION KA START SIZE
-const dist = 55; // MAX DOORI
-const sound = document.getElementById('explosionSound');
-function createParticles(x, y) {
-    const pcount = 70; // NO. OF PARTICLES
-    for (let i = 0; i < pcount; i++) {
-        const color = colors[Math.floor(Math.random() * colors.length)]; // RANDOM COLOR
+const size1 = 8;
+const size2 = 15;
+const size3 = 20;
+const dist1 = 70;
+const dist2 = 150;
+const dist3 = 400;
+const pc1 = 150;
+const pc2 = 300;
+const pc3 = 1000;
 
+const sound1 = document.getElementById('mortar');
+const sound2 = document.getElementById('missile');
+const sound3 = document.getElementById('tsar');
+// const sound3 = document.getElementById('')
+
+function createParticles(x, y, maxExplosionSize, particleCount) {
+    for (let i = 0; i < particleCount; i++) {
+        const color = colors[Math.floor(Math.random() * colors.length)];
         const angle = Math.random() * Math.PI * 2;
-        const radius = Math.random() * size; 
+        const radius = Math.random() * maxExplosionSize;
 
         particles.push({
-            originX: x, // ORIGINAL POSITION
+            originX: x,
             originY: y,
-            x: x + Math.cos(angle) * radius, // START AREA ME EPARTICLE POSITION
+            x: x + Math.cos(angle) * radius,
             y: y + Math.sin(angle) * radius,
             particleRadius: Math.random() * 5 + 2,
             color: color,
             speed: Math.random() * 2 + 1,
             direction: Math.random() * Math.PI * 2
-        })
+        });
     }
 }
 
-function updateParticles() {
-    c.clearRect(0, 0, canvas.width, canvas.height); // CANVAS CLEAR
+function updateParticles(maxParticleDistance) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const remover = [];
     particles.forEach((particle, index) => {
-        particle.x += Math.cos(particle.direction) * particle.speed; // H-MOTION
-        particle.y += Math.sin(particle.direction) * particle.speed; // V-MOTION
+        particle.x += Math.cos(particle.direction) * particle.speed; 
+        particle.y += Math.sin(particle.direction) * particle.speed;
 
-        // EXPLOSION CENTER SE DOORI
-        const moved = Math.sqrt(
+        const distanceFromOrigin = Math.sqrt(
             (particle.x - particle.originX) ** 2 +
             (particle.y - particle.originY) ** 2
         );
 
-        // PARTICLE BANAANE KI JS
-        c.beginPath();
-        c.arc(particle.x, particle.y, particle.particleRadius, 0, Math.PI * 2);
-        c.fillStyle = particle.color;
-        c.fill();
+      
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.particleRadius, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
+        ctx.fill();
 
-        // PARTICLE KE MOTION KI LIMIT
-        if (moved > dist) {
-            particles.splice(index, 1);
+        if (distanceFromOrigin > maxParticleDistance) {
+            remover.push(index); // Push index instead of particle
         }
     });
 
-    // CONTINUE ANIMATION JABTAK PARTICLE ON SCREEN
+    // Remove particles after iterating
+    particles = particles.filter((_, index) => !remover.includes(index));
     if (particles.length > 0) {
-        animationFrameId = requestAnimationFrame(updateParticles);
+        animationFrameId = requestAnimationFrame(() => updateParticles(maxParticleDistance));
     } else {
-        cancelAnimationFrame(animationFrameId); // STOP WHEN NO PARTICLE ONSCREEN
+        cancelAnimationFrame(animationFrameId);
     }
 }
-
-// MORTAR BUTTON CLICK KI JS
+//MORTAR BUTTON
 document.getElementById('b1').addEventListener('click', () => {
-    particles = []; // PARTICLES RESET
-    // NAYE PARTICLES KE LIYE RANDOM POSITION GENERATION
-    const rX = Math.random() * canvas.width;
-    const rY = Math.random() * canvas.height;
-    createParticles(rX, rY);
-    updateParticles();
-    sound.currentTime = 0; // AWAJ RESET
-    sound.play(); // AWAJ SHURU
+    particles = []; 
+    const rx = Math.random() * canvas.width;
+    const ry = Math.random() * canvas.height;
+    createParticles(rx, ry, size1, pc1);
+    updateParticles(dist1); 
+    sound1.currentTime = 0; 
+    sound1.play();
+});
+//MISSILE BUTTON
+document.getElementById('b2').addEventListener('click', () => {
+    particles = [];
+    const rx = Math.random() * canvas.width;
+    const ry = Math.random() * canvas.height;
+    createParticles(rx, ry, size2, pc2); 
+    updateParticles(dist2);
+    sound2.currentTime = 0;
+    sound2.play();
+});
+//TSAR BUTTON
+document.getElementById('b3').addEventListener('click', () => {
+    particles = [];
+    const rx = Math.random() * canvas.width;
+    const ry = Math.random() * canvas.height;
+    createParticles(rx, ry, size3, pc3);
+    updateParticles(dist3);
+    sound3.currentTime = 0;
+    sound3.play();
 });
