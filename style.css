@@ -1,0 +1,51 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    height: 100vh;
+    background-image: url('ancient-map-wallpaper.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+    
+}
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+h1 {
+    padding-top: 85px;
+    font-size: 100px; 
+    font-weight: bold;
+    color: gold;
+    text-shadow: 
+        -3px -3px 0 #000,  
+        3px -3px 0 #000,
+        -6px 6px 0 #000,
+        3px 3px 0 #000;
+    text-align: center;
+}
+.holder {
+    position: relative;
+    bottom: -60px;
+    transition: opacity 1s ease;
+    opacity: 0;
+}
+.holder.show{
+    opacity: 1;
+}
+.slider {
+    padding: 15px 30px;
+    font-size: 30px;
+    color: black;
+    text-align: center;
+    border: 3px solid black;
+    background-color: gold;
+    border-radius: 6px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: goldenrod;
+}
