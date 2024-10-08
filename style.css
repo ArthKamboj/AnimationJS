@@ -46,6 +46,6 @@ h1 {
     border-radius: 6px;
     cursor: pointer;
 }
-button:hover {
+.slider:hover {
     background-color: goldenrod;
 }
