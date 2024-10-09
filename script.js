@@ -8,7 +8,7 @@ window.onload = function() {
  //PLAY BUTTON KI FUNCTIONING
  const playb = document.getElementById('sliding')
  playb.addEventListener('click', function() {
-    window.location.href = 'selector.html'
+    window.location.href = 'maingame.html'
  })
 
  //MOVING STARS KI JS
