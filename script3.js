@@ -38,7 +38,7 @@ const colors = ['rgba(255, 0, 0, 0.8)',
 const size1 = 8;
 const size2 = 15;
 const size3 = 20;
-const size4 = 25
+const size4 = 25;
 const dist1 = 50;
 const dist2 = 120;
 const dist3 = 350;
@@ -56,7 +56,7 @@ function createParticles(x, y, maxExplosionSize, particleCount) {
     for (let i = 0; i < particleCount; i++) {
         const color = colors[Math.floor(Math.random() * colors.length)];
         const angle = Math.random() * Math.PI * 2;
-        const radius = maxExplosionSize;
+        const radius =  maxExplosionSize*Math.random();
 
         particles.push({
             originX: x,
@@ -65,7 +65,7 @@ function createParticles(x, y, maxExplosionSize, particleCount) {
             y: y + Math.sin(angle) * radius,
             particleRadius: Math.random()*7 + 2,
             color: color,
-            speed: Math.random() * 10 + 1,
+            speed: Math.random() * 6 + 1,
             direction: Math.random() * Math.PI * 2
         });
     }
@@ -89,7 +89,7 @@ function updateParticles(maxParticleDistance) {
         ctx.fillStyle = particle.color;
         ctx.fill();
 
-        if (distanceFromOrigin > Math.random()*40*maxParticleDistance) {
+        if (distanceFromOrigin > Math.random()*15*maxParticleDistance) {
             remover.push(index); // Push index instead of particle
         }
     });
@@ -104,7 +104,6 @@ function updateParticles(maxParticleDistance) {
 }
 //MID BUTTON
 document.getElementById('b1').addEventListener('click', () => {
-    particles = []; 
     const rx = Math.random() * canvas.width;
     const ry = Math.random() * canvas.height;
     createParticles(rx, ry, size1, pc1);
@@ -114,7 +113,6 @@ document.getElementById('b1').addEventListener('click', () => {
 });
 //BIG BUTTON
 document.getElementById('b2').addEventListener('click', () => {
-    particles = [];
     const rx = Math.random() * canvas.width;
     const ry = Math.random() * canvas.height;
     createParticles(rx, ry, size2, pc2); 
@@ -124,7 +122,6 @@ document.getElementById('b2').addEventListener('click', () => {
 });
 //BIGGER BUTTON
 document.getElementById('b3').addEventListener('click', () => {
-    particles = [];
     const rx = Math.random() * canvas.width;
     const ry = Math.random() * canvas.height;
     createParticles(rx, ry, size3, pc3);
@@ -134,7 +131,6 @@ document.getElementById('b3').addEventListener('click', () => {
 });
 //BIGGEST BUTTON
 document.getElementById('b4').addEventListener('click', () => {
-    particles = [];
     const rx = Math.random() * canvas.width;
     const ry = Math.random() * canvas.height;
     createParticles(rx, ry, size4, pc4);
