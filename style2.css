@@ -1,11 +1,9 @@
+
 body {
     font-family: sans-serif;
     margin: 0;
     height: 100vh;
-    background-image: url('ancient-map-wallpaper.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background: transparent;
     overflow: hidden;
     
 }
@@ -23,32 +21,24 @@ h1 {
     font-size: 75px; 
     font-weight: bold;
     color: gold;
-    text-shadow: 
-        -3px -3px 0 #000,  
-        3px -3px 0 #000,
-        -7px 7px 0 #000,
-        4px 4px 0 #000;
     text-align: center;
 }
 
 .hold {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 100px;
 }
 .country {
     padding: 15px 50px;
     font-size: 30px;
     color: black;
     text-align: center;
-    border: 3px solid black;
+    border: 0px solid;
     background-color: gold;
     border-radius: 600px;
     cursor: pointer;
     margin-left: 10px;
-}
-.country:nth-child(2){
-    padding: 15px 20px;
 }
 .country:hover {
     background-color: goldenrod;

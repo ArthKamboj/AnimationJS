@@ -9,10 +9,12 @@ setTimeout(() => {
     const btn1 = document.getElementById('b1')
     const btn2 = document.getElementById('b2')
     const btn3 = document.getElementById('b3')
+    const btn4 = document.getElementById('b4')
     cnv.style.display = 'block'
     btn1.style.display = 'block'
     btn2.style.display = 'block'
     btn3.style.display = 'block'
+    btn4.style.display = 'block'
 },3000)
 //CANVAS KA KAAM
 const canvas = document.getElementById('cnvs');
@@ -24,24 +26,27 @@ let animationFrameId;
 let particles = [];
 
 const colors = ['rgba(255, 0, 0, 0.8)',
-    'rgba(255, 165, 0, 0.8)', 
-    'rgba(255, 255, 0, 0.8)', 
-    'rgba(139, 69, 19, 0.8)',    
-    'rgba(128, 0, 128, 0.8)',
-    'rgba(0, 255, 0, 0.8)',  
-    'rgba(0, 191, 255, 0.8)',
-    'rgba(255, 20, 147, 0.8)',
-    'rgba(255, 255, 255, 0.8)'];
+    'rgba(255, 165, 0, 1)', 
+    'rgba(255, 255, 0, 1)', 
+    'rgba(139, 69, 19, 1)',    
+    'rgba(128, 0, 128, 1)',
+    'rgba(0, 255, 0, 1)',  
+    'rgba(0, 191, 255, 1)',
+    'rgba(255, 20, 147, 1)',
+    'rgba(255, 255, 255, 1)'];
 
 const size1 = 8;
 const size2 = 15;
 const size3 = 20;
+const size4 = 25
 const dist1 = 70;
 const dist2 = 150;
 const dist3 = 400;
+const dist4 = 1500;
 const pc1 = 150;
 const pc2 = 300;
-const pc3 = 1000;
+const pc3 = 900;
+const pc4 = 1800;
 
 const sound1 = document.getElementById('mortar');
 const sound2 = document.getElementById('missile');
@@ -52,7 +57,7 @@ function createParticles(x, y, maxExplosionSize, particleCount) {
     for (let i = 0; i < particleCount; i++) {
         const color = colors[Math.floor(Math.random() * colors.length)];
         const angle = Math.random() * Math.PI * 2;
-        const radius = Math.random() * maxExplosionSize;
+        const radius = maxExplosionSize;
 
         particles.push({
             originX: x,
@@ -125,6 +130,16 @@ document.getElementById('b3').addEventListener('click', () => {
     const ry = Math.random() * canvas.height;
     createParticles(rx, ry, size3, pc3);
     updateParticles(dist3);
+    sound3.currentTime = 0;
+    sound3.play();
+});
+
+document.getElementById('b4').addEventListener('click', () => {
+    particles = [];
+    const rx = Math.random() * canvas.width;
+    const ry = Math.random() * canvas.height;
+    createParticles(rx, ry, size4, pc4);
+    updateParticles(dist4);
     sound3.currentTime = 0;
     sound3.play();
 });

@@ -2,7 +2,7 @@ body {
     font-family: sans-serif;
     margin: 0;
     height: 100vh;
-    background: #000;
+    background: transparent;
     overflow: hidden;
 }
 
@@ -22,24 +22,19 @@ main {
 
 h1 {
     position: absolute;
-    top: 20%; /* Use percentage for responsiveness */
-    font-size: 5vw; /* Responsive font size */
+    top: 20%;
+    font-size: 75px; 
     font-weight: bold;
     color: gold;
-    text-shadow: 
-        -3px -3px 0 #000,  
-        3px -3px 0 #000,
-        -6px 6px 0 #000,
-        3px 3px 0 #000;
     text-align: center;
     z-index: 2;
-    margin: 0; /* Remove default margin */
+    margin: 0;
 }
 
 .holder {
     position: absolute;
-    bottom: 41%; /* Adjust positioning for better visibility */
-    transition: opacity 0.5s ease; /* Shorter transition for quicker feedback */
+    bottom: 41%; 
+    transition: opacity 0.5s ease;
     opacity: 0;
     z-index: 2;
 }
