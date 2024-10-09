@@ -19,7 +19,7 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 const stars = [];
-const maxStars = 120;
+const maxStars = 500;
 const speed = 0.7;
 
 class Star {

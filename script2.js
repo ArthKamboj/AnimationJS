@@ -21,7 +21,7 @@ ind.addEventListener('mouseout', () => {
     clearInterval(intrvl);
 });
 
-//PAK BUTTON KI FUNCTIONING
+//click BUTTON KI FUNCTIONING
 const game = document.getElementById('yuck')
  game.addEventListener('click', function() {
     window.location.href = 'maingame.html'

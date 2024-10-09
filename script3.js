@@ -39,19 +39,18 @@ const size1 = 8;
 const size2 = 15;
 const size3 = 20;
 const size4 = 25
-const dist1 = 70;
-const dist2 = 150;
-const dist3 = 400;
-const dist4 = 1500;
-const pc1 = 150;
-const pc2 = 300;
-const pc3 = 900;
-const pc4 = 1800;
+const dist1 = 50;
+const dist2 = 120;
+const dist3 = 350;
+const dist4 = 1000;
+const pc1 = 250;
+const pc2 = 500;
+const pc3 = 1500;
+const pc4 = 2500;
 
 const sound1 = document.getElementById('mortar');
 const sound2 = document.getElementById('missile');
 const sound3 = document.getElementById('tsar');
-// const sound3 = document.getElementById('')
 
 function createParticles(x, y, maxExplosionSize, particleCount) {
     for (let i = 0; i < particleCount; i++) {
@@ -64,9 +63,9 @@ function createParticles(x, y, maxExplosionSize, particleCount) {
             originY: y,
             x: x + Math.cos(angle) * radius,
             y: y + Math.sin(angle) * radius,
-            particleRadius: Math.random() * 5 + 2,
+            particleRadius: Math.random()*7 + 2,
             color: color,
-            speed: Math.random() * 2 + 1,
+            speed: Math.random() * 10 + 1,
             direction: Math.random() * Math.PI * 2
         });
     }
@@ -90,7 +89,7 @@ function updateParticles(maxParticleDistance) {
         ctx.fillStyle = particle.color;
         ctx.fill();
 
-        if (distanceFromOrigin > maxParticleDistance) {
+        if (distanceFromOrigin > Math.random()*40*maxParticleDistance) {
             remover.push(index); // Push index instead of particle
         }
     });
@@ -103,7 +102,7 @@ function updateParticles(maxParticleDistance) {
         cancelAnimationFrame(animationFrameId);
     }
 }
-//MORTAR BUTTON
+//MID BUTTON
 document.getElementById('b1').addEventListener('click', () => {
     particles = []; 
     const rx = Math.random() * canvas.width;
@@ -113,7 +112,7 @@ document.getElementById('b1').addEventListener('click', () => {
     sound1.currentTime = 0; 
     sound1.play();
 });
-//MISSILE BUTTON
+//BIG BUTTON
 document.getElementById('b2').addEventListener('click', () => {
     particles = [];
     const rx = Math.random() * canvas.width;
@@ -123,7 +122,7 @@ document.getElementById('b2').addEventListener('click', () => {
     sound2.currentTime = 0;
     sound2.play();
 });
-//TSAR BUTTON
+//BIGGER BUTTON
 document.getElementById('b3').addEventListener('click', () => {
     particles = [];
     const rx = Math.random() * canvas.width;
@@ -133,7 +132,7 @@ document.getElementById('b3').addEventListener('click', () => {
     sound3.currentTime = 0;
     sound3.play();
 });
-
+//BIGGEST BUTTON
 document.getElementById('b4').addEventListener('click', () => {
     particles = [];
     const rx = Math.random() * canvas.width;
